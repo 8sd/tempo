@@ -84,6 +84,15 @@ Vue.prototype.$icons = {
   mdiTrashCan,
 }
 
+function abOrDefault (a, b, def) {
+  if (a)
+    return a;
+  else if (b)
+    return b;
+  else
+    return def;
+}
+
 Vue.prototype.$theme = {
   appBar: {
     color: "pink darken-4",
@@ -137,9 +146,9 @@ new Vue({
     this.$store.dispatch(
       'setupSync',
       {
-        url: this.$store.state.couchDbUrl,
-        username: this.$store.state.couchDbUsername,
-        password: this.$store.state.couchDbPassword,
+        url: abOrDefault(this.$store.state.couchDbUrl, process.env.VUE_APP_CDB_URL, null),
+        username: abOrDefault(this.$store.state.couchDbUsername, process.env.VUE_APP_CDB_USER, null),
+        password: abOrDefault(this.$store.state.couchDbPassword, process.env.VUE_APP_CDB_PASS, null),
       }
       )
   }
