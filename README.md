@@ -335,6 +335,14 @@ Then:
 - Create a user and a database
 - Setup sync in Tempo's web UI
 
+To persist the CouchDB configuration for your instance, you can define a `.env`-file with the following content (credentials as defined above):
+
+```
+VUE_APP_CDB_URL=https://<CouchDB_URL>/<DB_Name>
+VUE_APP_CDB_USER=admin
+VUE_APP_CDB_PASS=password
+```
+
 ### Deploying using Docker
 
 If you want to deploy Tempo using Docker, you can use our Dockerfile:
